@@ -6,25 +6,48 @@ A private, self-hosted web application for complete PDF manipulation. Built with
 
 ## Features
 
-### PDF Operations
+### 📄 Core PDF Operations
 - **Upload & Download**: Secure file upload and download with authentication
 - **Merge**: Combine multiple PDFs into a single document with custom ordering
 - **Split**: Extract specific pages from a PDF
 - **Rotate**: Rotate individual pages (90°, 180°, 270°)
-- **Text Extraction**: Extract text content from PDFs
-- **OCR (Optical Character Recognition)**: Extract text from scanned documents using Tesseract
-- **Add Images**: Insert images into PDF pages
+- **Delete Pages**: Remove unwanted pages from PDFs
+- **Reorder Pages**: Rearrange pages in any order
 
-### Conversion
+### 🔄 Conversion
 - **Image to PDF**: Convert images (JPG, PNG, GIF, BMP, TIFF, WebP) to PDF
 - **PDF to Images**: Export PDF pages as images (PNG, JPEG)
 - **Text to PDF**: Convert plain text to PDF
 - **HTML to PDF**: Convert HTML content to PDF
 
-### Security
-- Single-user authentication (JWT-based)
-- Secure file handling
-- CORS protection
+### 🔍 Text & OCR
+- **Text Extraction**: Extract text content from PDFs
+- **OCR (Optical Character Recognition)**: Extract text from scanned documents using Tesseract
+
+### 🗜️ Optimization
+- **Compress**: Reduce PDF file size while maintaining quality
+- **Flatten**: Flatten annotations and form fields
+
+### ✏️ Annotations & Editing
+- **Add Text**: Insert text annotations anywhere on pages
+- **Highlight**: Add colored highlights to areas
+- **Redact**: Permanently black out sensitive information
+- **Add Images**: Insert images into PDF pages
+- **Watermark**: Add text watermarks to all pages
+
+### 🔐 Security
+- **Encrypt**: Password-protect PDFs with AES-256 encryption
+- **Decrypt**: Remove password protection from PDFs
+- **Single-user authentication (JWT-based)**
+
+### 📝 Document Properties
+- **Page Numbers**: Add page numbers with customizable position
+- **Headers & Footers**: Add headers and footers to all pages
+- **Metadata Editor**: Edit document title, author, subject, keywords
+
+### ✍️ Digital Signatures
+- **Sign PDF**: Add signature images to documents
+- **Crop Pages**: Crop pages to specific dimensions
 
 ## Quick Start with Docker
 

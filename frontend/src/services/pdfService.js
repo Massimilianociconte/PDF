@@ -97,6 +97,180 @@ export const pdfService = {
     })
     return response.data
   },
+
+  // ============= ADVANCED FEATURES =============
+
+  // Compress PDF
+  compress: async (fileId) => {
+    const response = await api.post(`/pdf/compress/${fileId}`)
+    return response.data
+  },
+
+  // Add watermark
+  watermark: async (fileId, text, opacity = 0.3, angle = 45) => {
+    const response = await api.post('/pdf/watermark', {
+      file_id: fileId,
+      text: text,
+      opacity: opacity,
+      angle: angle,
+    })
+    return response.data
+  },
+
+  // Encrypt PDF
+  encrypt: async (fileId, userPassword, ownerPassword = null) => {
+    const response = await api.post('/pdf/encrypt', {
+      file_id: fileId,
+      user_password: userPassword,
+      owner_password: ownerPassword,
+    })
+    return response.data
+  },
+
+  // Decrypt PDF
+  decrypt: async (fileId, password) => {
+    const response = await api.post('/pdf/decrypt', {
+      file_id: fileId,
+      password: password,
+    })
+    return response.data
+  },
+
+  // Delete pages
+  deletePages: async (fileId, pages) => {
+    const response = await api.post('/pdf/delete-pages', {
+      file_id: fileId,
+      pages: pages,
+    })
+    return response.data
+  },
+
+  // Reorder pages
+  reorderPages: async (fileId, newOrder) => {
+    const response = await api.post('/pdf/reorder-pages', {
+      file_id: fileId,
+      new_order: newOrder,
+    })
+    return response.data
+  },
+
+  // Add text annotation
+  addText: async (fileId, text, page, x, y, fontSize = 12, color = '0,0,0') => {
+    const formData = new FormData()
+    formData.append('text', text)
+    formData.append('page', page)
+    formData.append('x', x)
+    formData.append('y', y)
+    formData.append('font_size', fontSize)
+    formData.append('color', color)
+    const response = await api.post(`/pdf/add-text/${fileId}`, formData)
+    return response.data
+  },
+
+  // Add highlight
+  addHighlight: async (fileId, page, x0, y0, x1, y1, color = '1,1,0') => {
+    const formData = new FormData()
+    formData.append('page', page)
+    formData.append('x0', x0)
+    formData.append('y0', y0)
+    formData.append('x1', x1)
+    formData.append('y1', y1)
+    formData.append('color', color)
+    const response = await api.post(`/pdf/highlight/${fileId}`, formData)
+    return response.data
+  },
+
+  // Redact area
+  redact: async (fileId, page, x0, y0, x1, y1) => {
+    const formData = new FormData()
+    formData.append('page', page)
+    formData.append('x0', x0)
+    formData.append('y0', y0)
+    formData.append('x1', x1)
+    formData.append('y1', y1)
+    const response = await api.post(`/pdf/redact/${fileId}`, formData)
+    return response.data
+  },
+
+  // Add page numbers
+  addPageNumbers: async (fileId, position = 'bottom', alignment = 'center', startNum = 1) => {
+    const response = await api.post('/pdf/page-numbers', {
+      file_id: fileId,
+      position: position,
+      alignment: alignment,
+      start_num: startNum,
+    })
+    return response.data
+  },
+
+  // Add header/footer
+  addHeaderFooter: async (fileId, headerText = null, footerText = null) => {
+    const response = await api.post('/pdf/header-footer', {
+      file_id: fileId,
+      header_text: headerText,
+      footer_text: footerText,
+    })
+    return response.data
+  },
+
+  // Get metadata
+  getMetadata: async (fileId) => {
+    const response = await api.get(`/pdf/metadata/${fileId}`)
+    return response.data
+  },
+
+  // Update metadata
+  updateMetadata: async (fileId, title, author, subject, keywords) => {
+    const response = await api.post('/pdf/metadata', {
+      file_id: fileId,
+      title: title,
+      author: author,
+      subject: subject,
+      keywords: keywords,
+    })
+    return response.data
+  },
+
+  // Extract images
+  extractImages: async (fileId) => {
+    const response = await api.post(`/pdf/extract-images/${fileId}`)
+    return response.data
+  },
+
+  // Sign PDF
+  sign: async (fileId, signatureFile, page, x, y, width = 100, height = 50) => {
+    const formData = new FormData()
+    formData.append('signature', signatureFile)
+    formData.append('page', page)
+    formData.append('x', x)
+    formData.append('y', y)
+    formData.append('width', width)
+    formData.append('height', height)
+    const response = await api.post(`/pdf/sign/${fileId}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    return response.data
+  },
+
+  // Flatten PDF
+  flatten: async (fileId) => {
+    const response = await api.post(`/pdf/flatten/${fileId}`)
+    return response.data
+  },
+
+  // Crop page
+  crop: async (fileId, page, x0, y0, x1, y1) => {
+    const formData = new FormData()
+    formData.append('page', page)
+    formData.append('x0', x0)
+    formData.append('y0', y0)
+    formData.append('x1', x1)
+    formData.append('y1', y1)
+    const response = await api.post(`/pdf/crop/${fileId}`, formData)
+    return response.data
+  },
 }
 
 export const conversionService = {

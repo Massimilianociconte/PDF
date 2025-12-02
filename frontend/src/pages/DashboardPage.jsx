@@ -10,7 +10,14 @@ import {
   LogOut,
   Download,
   Trash2,
-  ChevronRight
+  ChevronRight,
+  Minimize2,
+  Droplet,
+  Lock,
+  PenTool,
+  ListOrdered,
+  FileEdit,
+  PenLine
 } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import FileUploader from '../components/FileUploader'
@@ -19,6 +26,13 @@ import MergePanel from '../components/MergePanel'
 import SplitPanel from '../components/SplitPanel'
 import ConvertPanel from '../components/ConvertPanel'
 import OCRPanel from '../components/OCRPanel'
+import CompressPanel from '../components/CompressPanel'
+import WatermarkPanel from '../components/WatermarkPanel'
+import SecurityPanel from '../components/SecurityPanel'
+import AnnotatePanel from '../components/AnnotatePanel'
+import PageToolsPanel from '../components/PageToolsPanel'
+import MetadataPanel from '../components/MetadataPanel'
+import SignPanel from '../components/SignPanel'
 
 const tabs = [
   { id: 'upload', name: 'Upload', icon: Upload },
@@ -26,6 +40,13 @@ const tabs = [
   { id: 'split', name: 'Split', icon: Scissors },
   { id: 'convert', name: 'Convert', icon: Image },
   { id: 'ocr', name: 'OCR', icon: FileSearch },
+  { id: 'compress', name: 'Compress', icon: Minimize2 },
+  { id: 'watermark', name: 'Watermark', icon: Droplet },
+  { id: 'security', name: 'Security', icon: Lock },
+  { id: 'annotate', name: 'Annotate', icon: PenTool },
+  { id: 'pagetools', name: 'Page Tools', icon: ListOrdered },
+  { id: 'metadata', name: 'Metadata', icon: FileEdit },
+  { id: 'sign', name: 'Sign', icon: PenLine },
 ]
 
 export default function DashboardPage() {
@@ -67,6 +88,20 @@ export default function DashboardPage() {
         return <ConvertPanel onConverted={handleFileUploaded} />
       case 'ocr':
         return <OCRPanel files={files} />
+      case 'compress':
+        return <CompressPanel files={files} onCompressed={handleFileUploaded} />
+      case 'watermark':
+        return <WatermarkPanel files={files} onWatermarked={handleFileUploaded} />
+      case 'security':
+        return <SecurityPanel files={files} onProcessed={handleFileUploaded} />
+      case 'annotate':
+        return <AnnotatePanel files={files} onProcessed={handleFileUploaded} />
+      case 'pagetools':
+        return <PageToolsPanel files={files} onProcessed={handleFileUploaded} />
+      case 'metadata':
+        return <MetadataPanel files={files} onProcessed={handleFileUploaded} />
+      case 'sign':
+        return <SignPanel files={files} onSigned={handleFileUploaded} />
       default:
         return null
     }
