@@ -1,0 +1,5 @@
+## 2024-04-12 - Path Traversal Prevention in File IDs
+**Vulnerability:** Path Traversal
+**Description:** The application was using user-provided `file_id` directly in file path construction (e.g., `os.path.join(settings.upload_dir, f"{file_id}.pdf")`). Although the extension was appended, this could potentially allow access to other PDF files on the system if `file_id` contained traversal characters like `../` (if the system had other PDF files accessible relative to the upload directory). More importantly, it violated the requirement for strict UUID validation.
+**Learning:** Always validate user inputs that are used in file system operations. Relying on file extensions or path joining is not sufficient if the input itself can manipulate the directory structure. Enforcing strict formats (like UUID) is a robust defense against path traversal.
+**Prevention:** Implemented `validate_uuid` utility function and applied it to all endpoints in `pdf_operations.py` that accept `file_id`. This ensures that `file_id` must be a valid UUID string, effectively eliminating any possibility of path traversal characters.
