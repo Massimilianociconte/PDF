@@ -1,0 +1,9 @@
+
+> pdf-manipulator-frontend@1.0.0 dev /app/frontend
+> vite
+
+
+  VITE v5.4.21  ready in 336 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: use --host to expose
