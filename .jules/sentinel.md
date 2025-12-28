@@ -1,0 +1,4 @@
+## 2024-05-23 - Path Traversal in PDF Operations
+**Vulnerability:** File operations in `pdf_operations.py` constructed paths using string formatting with user-provided `file_id` (e.g., `f"{file_id}.pdf"`) without validation, allowing directory traversal (e.g., `../`).
+**Learning:** Frameworks like FastAPI handle path parameters, but they don't automatically prevent logical path traversal if the application uses the raw parameter to construct file system paths. `httpx` and `TestClient` may normalize paths in requests, so testing path traversal requires careful construction of inputs (e.g., encoded characters) or mocking the internal function calls if the web server normalizes before dispatch.
+**Prevention:** Always validate that identifiers used in file paths strictly match expected formats (like UUIDs). Use centralized validation utilities (`validate_uuid`) and enforce them at the API boundary.
