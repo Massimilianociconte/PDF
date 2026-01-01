@@ -1,0 +1,4 @@
+## 2024-05-23 - Pass-the-Hash in Plaintext Fallback
+**Vulnerability:** The `authenticate_user` function allowed a "Pass-the-Hash" attack because it compared the provided password directly against `settings.admin_password` (which could be a hash) using `==` before attempting `verify_password`. If `ADMIN_PASSWORD` was a hash, an attacker could login by sending the hash string as the password.
+**Learning:** Legacy support for plaintext passwords can introduce subtle vulnerabilities if not handled carefully. Direct equality checks (`==`) against a configuration value that might be a hash are dangerous.
+**Prevention:** Always attempt to verify input as a hash first using the proper library (`verify_password`). Only fall back to plaintext comparison if the library explicitly indicates the stored value is not a valid hash (e.g., catching `ValueError` from `passlib`).
