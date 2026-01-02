@@ -1,0 +1,3 @@
+## 2024-05-23 - Blocking CPU operations in async def
+**Learning:** FastAPI `async def` endpoints run on the main event loop. If they perform blocking CPU-bound operations (like image processing or PDF manipulation) or blocking I/O (like standard `open()`), they block the entire server. This is a critical performance anti-pattern.
+**Action:** For endpoints that require both `await` (e.g., for file streaming) and blocking CPU operations, use `fastapi.concurrency.run_in_threadpool` to offload the blocking work to a thread pool. For purely CPU-bound endpoints, use standard `def` instead of `async def`.
