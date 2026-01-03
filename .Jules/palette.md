@@ -1,0 +1,3 @@
+## 2024-01-03 - Nested Interactive Elements in Lists
+**Learning:** List items that act as large clickable targets (interactive rows) often inadvertently nest other interactive elements (like "Delete" or "Download" buttons). This creates an invalid HTML structure and confusing keyboard navigation behavior where focus gets trapped or ambiguous.
+**Action:** Flatten the structure by using sibling elements. The main "row click" should be a distinct button element (e.g., taking up `flex-1` space), and secondary actions should be sibling buttons, all contained within a non-interactive list item container (like a `div` or `li`).
