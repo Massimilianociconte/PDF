@@ -1,0 +1,4 @@
+## 2024-05-24 - [Path Traversal in Conversion Endpoints]
+**Vulnerability:** The `download_converted_image` endpoint in `conversion.py` accepted `output_id` and `filename` path parameters and used them directly in `os.path.join`, allowing potential path traversal (e.g., accessing files outside `upload_dir`). Additionally, `convert_pdf_to_images` did not validate `file_id`.
+**Learning:** Security fixes must be holistic. Fixing one module (`pdf_operations.py`) is insufficient if similar patterns exist in others (`conversion.py`). "Safe" utility functions (`validate_safe_filename`) are only effective if actually used.
+**Prevention:** Extended strict UUID validation to `conversion.py` for all ID parameters and enforced `validate_safe_filename` for filename parameters in download endpoints. This ensures all file access paths are strictly controlled.
