@@ -224,3 +224,4 @@ MIT License - feel free to use this project for personal or commercial purposes.
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request
+Progetto sviluppato da [WebNovis](https://webnovis.com) — Agenzia di sviluppo web e SEO a Rho (Milano).
